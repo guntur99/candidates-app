@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TCandidate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\TCandidate;
 use Carbon\Carbon;
 
-class TCandidateController extends Controller
+class APITCandidateController extends Controller
 {
     public function __construct(){
         $this->now = Carbon::now('Asia/Jakarta');
@@ -17,22 +17,7 @@ class TCandidateController extends Controller
     {
         $candidates = TCandidate::get();
 
-        return view('layouts.dashboard.candidate.index', [
-            'candidates'     => $candidates,
-            'filter'        => 0,
-        ]);
-    }
-
-    public function datatable(){
-
-        $candidates = TCandidate::get();
-
-        return datatables()->of($candidates)->toJson();
-    }
-
-    public function create()
-    {
-        return view('layouts.dashboard.candidate.create');
+        return $candidates;
     }
 
     public function store()
@@ -59,12 +44,12 @@ class TCandidateController extends Controller
         $candidate->created_at    = $this->now;
         $candidate->save();
 
-        return redirect()->route('index.candidates');
+        return $candidate;
     }
 
-    public function update()
+    public function update(string $id)
     {
-        $candidate                  = TCandidate::find((int)request()->candidate_id);
+        $candidate                  = TCandidate::find($id);
         $candidate->full_name       = request()->full_name;
         $candidate->email           = request()->email;
         $candidate->phone_number    = request()->phone_number;
@@ -76,12 +61,12 @@ class TCandidateController extends Controller
         $candidate->updated_at      = $this->now;
         $candidate->save();
 
-        return redirect()->route('index.candidates');
+        return $candidate;
     }
 
-    public function destroy()
+    public function destroy(string $id)
     {
-        TCandidate::find(request()->id)->delete();
+        TCandidate::find($id)->delete();
 
         return response('Delete Successfuly!', 200);
     }
