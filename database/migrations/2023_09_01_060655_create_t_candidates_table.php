@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('t_candidates', function (Blueprint $table) {
             $table->id();
-            $table->integer('candidate_id');
             $table->string('email')->unique();
             $table->string('phone_number')->unique()->nullable();
             $table->string('full_name');

@@ -55,14 +55,14 @@
     </section>
 
     <!---Modal-->
-    <div class="modal fade bd-example-modal-lg" id="productDetail" data-keyboard="false" tabindex="-1" role="dialog">
+    <div class="modal fade bd-example-modal-lg" id="candidateDetail" data-keyboard="false" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <form method="POST" action="{{ route('update.products') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('update.candidates') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <input id="product_id" name="product_id" hidden>
-                        <h5 class="modal-title">Product Detail</h5>
+                        <input id="candidate_id" name="candidate_id" hidden>
+                        <h5 class="modal-title">Candidate Detail</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -73,62 +73,43 @@
                             <div class="card-body">
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="category">Category</label>
-                                        <div id="select-category"></div>
-                                    </div>
-                                    <div class="input-group col-md-4">
-                                        <div class="form-group">
-                                            <label>Thumbnail</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
-                                                <label class="custom-file-label" for="thumbnail"
-                                                        >Choose file</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="price">Price</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Rp.</span>
-                                            </div>
-                                            <input type="number" class="form-control"  id="price" name="price" placeholder="1000000" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="stock">Stock</label>
-                                        <input type="number" class="form-control" id="stock" name="stock" value="1">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="weight">Weight</label>
-                                        <div class="input-group mb-3">
-                                            <input type="number" class="form-control"  id="weight" name="weight" value="1">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">gram</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="description">Description</label>
-                                        <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                                        <label for="name">Full Name</label>
+                                        <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full Name" required>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Thumbnail</label>
-                                        <div id="thumbnail-preview"></div>
+                                        <label for="name">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Phone</label>
+                                        <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Place of Birth</label>
+                                        <input type="text" class="form-control" id="pob" name="pob" placeholder="POB" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Date of Birth</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" placeholder="DOB" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Gender</label>
+                                        <select id="gender" name="gender" class="form-control" required>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Year Experience</label>
+                                        <input type="text" class="form-control" id="year_exp" name="year_exp" placeholder="Year Experience" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Last Salary</label>
+                                        <input type="text" class="form-control" id="last_salary" name="last_salary" placeholder="Last Salary" required>
                                     </div>
                                 </div>
-                                <button type="submit" class="w-100 btn btn-dark mt-3">Update Product</button>
+                                <button type="submit" class="w-100 btn btn-dark mt-3">Update Candidate</button>
                             </div>
                         </div>
                     </div>
@@ -156,7 +137,7 @@
                     </div>
                 </div>
                 <div class="modal-footer ">
-                    <a href="#" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" >cancel</a>
+                    <a href="#" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" >Cancel</a>
                     <div id="delete-button"></div>
                 </div>
             </div>
@@ -181,7 +162,7 @@
             url: '{{route("datatable.candidates")}}',
         },
         "columns": [
-            { "name": "candidate_id", "data": "candidate_id" },
+            { "name": "id", "data": "id" },
             { "name": "full_name", "data": "full_name" },
             { "name": "email", "data": "email" },
             { "name": "phone_number", "data": "phone_number" },
@@ -225,26 +206,18 @@
     });
 
     function editProduct(data){
-        var el          = $('#productDetail'),
-            options     = "",
-            thumbnail   = "";
+        var el          = $('#candidateDetail'),
+            options     = "";
 
-        $('#product_id').val(data.id);
-        $('#name').val(data.name);
-        $('#price').val(data.price);
-        $('#stock').val(data.stock);
-        $('#weight').val(data.weight);
-        $('#description').val(data.description);
-
-        (data.thumbnail !== null) ? thumbnail = `
-            <div class="card-media">
-                <img class="card-img-top" src="{{ asset('storage/thumbnails') }}/`+data.thumbnail+`" style="width: 250px;">
-            </div>` : thumbnail = `
-            <div class="card-media">
-                <img class="card-img-top" src="{{ asset('atmos/light/assets/img/products/item%20(3).jpg') }}" style="width: 250px;">
-            </div>`;
-        $('#thumbnail-preview').html(thumbnail);
-
+        $('#candidate_id').val(data.id);
+        $('#full_name').val(data.full_name);
+        $('#email').val(data.email);
+        $('#phone_number').val(data.phone_number);
+        $('#pob').val(data.pob);
+        $('#dob').val(data.dob);
+        $('#gender').val(data.gender);
+        $('#year_exp').val(data.year_exp);
+        $('#last_salary').val(data.last_salary);
         el.modal('show');
     };
 
@@ -257,7 +230,7 @@
         var formData = new FormData();
         formData.append('id', id);
 
-        axios.post('{{route("delete.products")}}', formData).then((res) => {
+        axios.post('{{route("destroy.candidates")}}', formData).then((res) => {
             alert('Delete Success!');
             location.reload();
         }).catch((err) => {
