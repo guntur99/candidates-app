@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TCandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Admin
+Route::get('/candidate/create', [TCandidateController::class, 'create'])->name('create.candidate');
+Route::post('/candidate/store', [TCandidateController::class, 'store'])->name('store.products');
+Route::post('/candidate/update', [TCandidateController::class, 'update'])->name('update.products');
+Route::post('/candidate/delete', [TCandidateController::class, 'delete'])->name('delete.products');
+Route::get('/', [TCandidateController::class, 'index'])->name('index.candidates');
+Route::get('/candidate/datatable', [TCandidateController::class, 'datatable'])->name('datatable.candidates');
