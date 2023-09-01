@@ -17,7 +17,7 @@ class APITCandidateController extends Controller
     {
         $candidates = TCandidate::get();
 
-        return $candidates;
+        return response()->json(['success' => true, 'data' => $candidates]);
     }
 
     public function store()
@@ -44,7 +44,7 @@ class APITCandidateController extends Controller
         $candidate->created_at    = $this->now;
         $candidate->save();
 
-        return $candidate;
+        return response()->json(['success' => true, 'data' => $candidate]);
     }
 
     public function update(string $id)
@@ -61,7 +61,7 @@ class APITCandidateController extends Controller
         $candidate->updated_at      = $this->now;
         $candidate->save();
 
-        return $candidate;
+        return response()->json(['success' => true, 'data' => $candidate]);
     }
 
     public function destroy(string $id)
